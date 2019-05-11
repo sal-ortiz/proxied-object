@@ -1,0 +1,26 @@
+{
+  "name": "proxied-object",
+  "version": "0.0.1",
+  "description": "A JavaScript Object, Proxied to allow for access callbacks.",
+  "main": "object.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "devDependencies": {
+    "jasmine": "^3.4.0"
+  },
+  "dependencies": {},
+  "homepage": "https://github.com/slackjockey/proxied-object.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slackjockey/proxied-object.git"
+  },
+  "keywords": [
+    "object",
+    "proxy",
+    "trap",
+    "debug"
+  ],
+  "author": "Salvador Ortiz",
+  "license": "MIT"
+}
