@@ -6,6 +6,8 @@ const appPath = Path.join(specPath, '..');
 
 const ObjectBase = require(Path.join(appPath, 'lib', 'base.js'));
 
+const META_KEY = '.op';
+
 
 describe(ObjectBase.name, () => {
   const subject = ObjectBase;
@@ -20,12 +22,52 @@ describe(ObjectBase.name, () => {
         instance = new subject(...input);
       });
 
-      it ('contains the contents of our input object', () => {
+      it('contains the contents of our input object', () => {
         let inp = input[0];
 
         for (let key in inp) {
           expect(instance[key]).toEqual(inp[key]);
         }
+
+      });
+
+      describe('the onGet method', () => {
+
+        describe('given a key and a callback as input', () => {
+          let key = 'test';
+          let callback = () => {};
+
+          beforeEach(() => {
+            instance.onGet(key, callback);
+          });
+
+          it('sets a handler for the given key', () => {
+            let handlers = instance[META_KEY].handlers;
+
+            expect(handlers[key].get).toEqual(callback)
+          });
+
+        });
+
+      });
+
+      describe('the onSet method', () => {
+
+        describe('given a key and a callback as input', () => {
+          let key = 'test';
+          let callback = () => {};
+
+          beforeEach(() => {
+            instance.onSet(key, callback);
+          });
+
+          it('sets a handler for the given key', () => {
+            let handlers = instance[META_KEY].handlers;
+
+            expect(handlers[key].set).toEqual(callback)
+          });
+
+        });
 
       });
 
@@ -37,10 +79,50 @@ describe(ObjectBase.name, () => {
         instance = new subject();
       });
 
-      it ('contains nothing', () => {
+      it('contains nothing', () => {
         let keys = Object.keys(instance);
 
         expect(keys.length).toEqual(0);
+      });
+
+      describe('the onGet method', () => {
+
+        describe('given a key and a callback as input', () => {
+          let key = 'test';
+          let callback = () => {};
+
+          beforeEach(() => {
+            instance.onGet(key, callback);
+          });
+
+          it('sets a handler for the given key', () => {
+            let handlers = instance[META_KEY].handlers;
+
+            expect(handlers[key].get).toEqual(callback)
+          });
+
+        });
+
+      });
+
+      describe('the onSet method', () => {
+
+        describe('given a key and a callback as input', () => {
+          let key = 'test';
+          let callback = () => {};
+
+          beforeEach(() => {
+            instance.onSet(key, callback);
+          });
+
+          it('sets a handler for the given key', () => {
+            let handlers = instance[META_KEY].handlers;
+
+            expect(handlers[key].set).toEqual(callback)
+          });
+
+        });
+
       });
 
     });
