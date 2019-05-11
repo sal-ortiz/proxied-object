@@ -20,7 +20,7 @@ describe(ProxiedObject.name, () => {
         instance = new subject(input);
       });
 
-      it ('contains the contents of our input object', () => {
+      it('contains the contents of our input object', () => {
 
         for (let key in input) {
           expect(instance[key]).toEqual(input[key]);
@@ -36,7 +36,7 @@ describe(ProxiedObject.name, () => {
         instance = new subject();
       });
 
-      it ('contains nothing', () => {
+      it('contains nothing', () => {
         let keys = Object.keys(instance);
 
         expect(keys.length).toEqual(0);
