@@ -5,6 +5,7 @@ const specPath = Path.join(__dirname);
 const appPath = Path.join(specPath, '..');
 
 const ProxiedObject = require(Path.join(appPath, 'object.js'));
+const ObjectBase = require(Path.join(appPath, 'lib', 'base.js'));
 
 
 describe(ProxiedObject.name, () => {
@@ -26,6 +27,18 @@ describe(ProxiedObject.name, () => {
           expect(instance[key]).toEqual(input[key]);
         }
 
+      });
+
+      it('exposes BaseObject\'s onGet() function', () => {
+        let baseInstance = new ObjectBase();
+
+        expect(instance.onGet).toEqual(baseInstance.onGet);
+      });
+
+      it('exposes BaseObject\'s onSet() function', () => {
+        let baseInstance = new ObjectBase();
+
+        expect(instance.onSet).toEqual(baseInstance.onSet);
       });
 
     });
