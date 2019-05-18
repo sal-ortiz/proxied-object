@@ -30,12 +30,16 @@ describe(ProxiedObject.name, () => {
       });
 
       it('exposes BaseObject\'s onGet() function', () => {
+        // onGet's functionality is tested with BaseObject.
+        // we only need to verify that the method popagates.
         let baseInstance = new ObjectBase();
 
         expect(instance.onGet).toEqual(baseInstance.onGet);
       });
 
       it('exposes BaseObject\'s onSet() function', () => {
+        // onSet's functionality is tested with BaseObject.
+        // we only need to verify that the method popagates.
         let baseInstance = new ObjectBase();
 
         expect(instance.onSet).toEqual(baseInstance.onSet);
