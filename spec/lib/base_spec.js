@@ -22,13 +22,13 @@ describe(ObjectBase.name, () => {
         instance = new subject(input);
       });
 
-      it('contains the contents of our input object', () => {
-        let inp = input[0];
+      it('contains the contents of our input object as well as our meta data', () => {
 
         for (let key in input) {
           expect(instance[key]).toEqual(input[key]);
         }
 
+        expect(instance[META_KEY]).toBeDefined();
       });
 
       describe('the onGet method', () => {
@@ -79,10 +79,11 @@ describe(ObjectBase.name, () => {
         instance = new subject();
       });
 
-      it('contains nothing', () => {
+      it('contains only our meta', () => {
         let keys = Object.keys(instance);
 
-        expect(keys.length).toEqual(0);
+        expect(keys.length).toEqual(1);
+        expect(instance[META_KEY]).toBeDefined();
       });
 
       describe('the onGet method', () => {
