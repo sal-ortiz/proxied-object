@@ -31,11 +31,12 @@ describe(ObjectBase.name, () => {
         expect(instance[META_KEY]).toBeDefined();
       });
 
+
       describe('the onGet method', () => {
 
         describe('given a key and a callback as input', () => {
-          let key = 'test';
-          let callback = () => {};
+          let key = Math.random().toString(32);
+          let callback = jasmine.createSpy('getter callback');
 
           beforeEach(() => {
             instance.onGet(key, callback);
@@ -54,8 +55,8 @@ describe(ObjectBase.name, () => {
       describe('the onSet method', () => {
 
         describe('given a key and a callback as input', () => {
-          let key = 'test';
-          let callback = () => {};
+          let key = Math.random().toString(32);
+          let callback = jasmine.createSpy('setter callback');
 
           beforeEach(() => {
             instance.onSet(key, callback);
@@ -89,8 +90,8 @@ describe(ObjectBase.name, () => {
       describe('the onGet method', () => {
 
         describe('given a key and a callback as input', () => {
-          let key = 'test';
-          let callback = () => {};
+          let key = Math.random().toString(32);
+          let callback = jasmine.createSpy('getter callback');
 
           beforeEach(() => {
             instance.onGet(key, callback);
@@ -109,8 +110,8 @@ describe(ObjectBase.name, () => {
       describe('the onSet method', () => {
 
         describe('given a key and a callback as input', () => {
-          let key = 'test';
-          let callback = () => {};
+          let key = Math.random().toString(32);
+          let callback = jasmine.createSpy('setter callback');
 
           beforeEach(() => {
             instance.onSet(key, callback);
