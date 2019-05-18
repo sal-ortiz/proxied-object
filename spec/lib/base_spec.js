@@ -16,17 +16,17 @@ describe(ObjectBase.name, () => {
     let instance;
 
     describe('given an object as input', () => {
-      let input = [{ one: 1, two: 2, three: 3}];
+      let input = { one: 1, two: 2, three: 3, };
 
       beforeEach(() => {
-        instance = new subject(...input);
+        instance = new subject(input);
       });
 
       it('contains the contents of our input object', () => {
         let inp = input[0];
 
-        for (let key in inp) {
-          expect(instance[key]).toEqual(inp[key]);
+        for (let key in input) {
+          expect(instance[key]).toEqual(input[key]);
         }
 
       });
