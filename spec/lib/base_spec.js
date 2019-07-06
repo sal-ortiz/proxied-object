@@ -45,7 +45,10 @@ describe(ObjectBase.name, () => {
           it('sets a handler for the given key', () => {
             let handlers = instance[META_KEY].handlers;
 
-            expect(handlers[key].get).toEqual(callback)
+            expect(handlers[key].get).toEqual(
+              jasmine.arrayContaining([callback])
+            );
+
           });
 
         });
@@ -65,7 +68,10 @@ describe(ObjectBase.name, () => {
           it('sets a handler for the given key', () => {
             let handlers = instance[META_KEY].handlers;
 
-            expect(handlers[key].set).toEqual(callback)
+            expect(handlers[key].set).toEqual(
+              jasmine.arrayContaining([callback])
+            );
+
           });
 
         });
@@ -100,7 +106,10 @@ describe(ObjectBase.name, () => {
           it('sets a handler for the given key', () => {
             let handlers = instance[META_KEY].handlers;
 
-            expect(handlers[key].get).toEqual(callback)
+            expect(handlers[key].get).toEqual(
+              jasmine.arrayContaining([callback])
+            );
+
           });
 
         });
@@ -120,7 +129,10 @@ describe(ObjectBase.name, () => {
           it('sets a handler for the given key', () => {
             let handlers = instance[META_KEY].handlers;
 
-            expect(handlers[key].set).toEqual(callback)
+            expect(handlers[key].set).toEqual(
+              jasmine.arrayContaining([callback])
+            );
+
           });
 
         });

@@ -61,7 +61,7 @@ describe(ProxiedObject.name, () => {
           let handlers = instance[META_KEY].handlers;
           let val = instance[key];
 
-          expect(handlers[key].get).toHaveBeenCalled();
+          expect(handlers[key].get[0]).toHaveBeenCalled();
         });
 
         it('returns the value returned by the callback', () => {
@@ -85,7 +85,7 @@ describe(ProxiedObject.name, () => {
 
           instance[key] = Date.now();
 
-          expect(handlers[key].set).toHaveBeenCalled();
+          expect(handlers[key].set[0]).toHaveBeenCalled();
         });
 
         it('sets the value returned by the callback', () => {
@@ -141,7 +141,7 @@ describe(ProxiedObject.name, () => {
           let handlers = instance[META_KEY].handlers;
           let val = instance[key];
 
-          expect(handlers[key].get).toHaveBeenCalled();
+          expect(handlers[key].get[0]).toHaveBeenCalled();
         });
 
         it('returns the value returned by the callback', () => {
@@ -165,7 +165,7 @@ describe(ProxiedObject.name, () => {
 
           instance[key] = Date.now();
 
-          expect(handlers[key].set).toHaveBeenCalled();
+          expect(handlers[key].set[0]).toHaveBeenCalled();
         });
 
         it('sets the value returned by the callback', () => {
