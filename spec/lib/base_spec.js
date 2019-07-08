@@ -6,7 +6,7 @@ const appPath = Path.join(specPath, '..');
 
 const ObjectBase = require(Path.join(appPath, 'lib', 'base.js'));
 
-const META_KEY = '.op';
+const META_KEY = '_op';
 
 
 describe(ObjectBase.name, () => {

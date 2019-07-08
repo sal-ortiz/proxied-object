@@ -7,7 +7,7 @@ const appPath = Path.join(specPath, '..');
 const ProxiedObject = require(Path.join(appPath, 'object.js'));
 const ObjectBase = require(Path.join(appPath, 'lib', 'base.js'));
 
-const META_KEY = '.op';
+const META_KEY = '_op';
 
 
 describe(ProxiedObject.name, () => {
@@ -68,6 +68,45 @@ describe(ProxiedObject.name, () => {
           expect(instance[key]).toEqual(value);
         });
 
+        describe('given multiple callbacks', () => {
+          let callbacks = [
+            jasmine.createSpy('first getter callback')
+              .and.returnValue('one'),
+
+            jasmine.createSpy('second getter callback')
+              .and.returnValue('two'),
+
+            jasmine.createSpy('third getter callback')
+              .and.returnValue('three'),
+          ];
+
+          beforeEach(() => {
+            instance.onGet(key, callbacks[0]);
+            instance.onGet(key, callbacks[1]);
+            instance.onGet(key, callbacks[2]);
+          });
+
+          it('calls each handler sequentially', () => {
+            let val = instance[key];
+
+            // NOTE: This is a frail test. We aren't tracking the
+            //       progress of the callbacks on the event loop.
+            expect(callbacks[0]).toHaveBeenCalledBefore(callbacks[1]);
+            expect(callbacks[1]).toHaveBeenCalledBefore(callbacks[2]);
+          });
+
+          xit('aggregates the returned values', () => {
+            let val = instance[key];
+
+            expect(callbacks[0]).toHaveBeenCalledWith(value);
+            expect(callbacks[1]).toHaveBeenCalledWith('one');
+            expect(callbacks[2]).toHaveBeenCalledWith('two');
+
+            expect(val).toEqual('three');
+          });
+
+        });
+
       });
 
       describe('the setter callback', () => {
@@ -92,6 +131,45 @@ describe(ProxiedObject.name, () => {
           instance[key] = Date.now();
 
           expect(instance[key]).toEqual(value);
+        });
+
+        describe('given multiple callbacks', () => {
+          let callbacks = [
+            jasmine.createSpy('first getter callback')
+              .and.returnValue('one'),
+
+            jasmine.createSpy('second getter callback')
+              .and.returnValue('two'),
+
+            jasmine.createSpy('third getter callback')
+              .and.returnValue('three'),
+          ];
+
+          beforeEach(() => {
+            instance.onSet(key, callbacks[0]);
+            instance.onSet(key, callbacks[1]);
+            instance.onSet(key, callbacks[2]);
+          });
+
+          xit('calls each handler sequentially', () => {
+            instance[key] = value;
+
+            // NOTE: This is a frail test. We aren't tracking the
+            //       progress of the callbacks on the event loop.
+            expect(callbacks[0]).toHaveBeenCalledBefore(callbacks[1]);
+            expect(callbacks[1]).toHaveBeenCalledBefore(callbacks[2]);
+          });
+
+          it('aggregates the returned values', () => {
+            instance[key] = value;
+
+            expect(callbacks[0]).toHaveBeenCalledWith(value);
+            expect(callbacks[1]).toHaveBeenCalledWith('one');
+            expect(callbacks[2]).toHaveBeenCalledWith('two');
+
+            expect(instance[key]).toEqual('three');
+          });
+
         });
 
       });
